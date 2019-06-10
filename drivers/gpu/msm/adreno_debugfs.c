@@ -136,6 +136,7 @@ static void sync_event_print(struct seq_file *s,
 				sync_event->context->id, sync_event->timestamp);
 		break;
 	}
+#ifdef CONFIG_FENCE_DEBUG
 	case KGSL_CMD_SYNCPOINT_TYPE_FENCE: {
 		int i;
 
@@ -144,6 +145,7 @@ static void sync_event_print(struct seq_file *s,
 				sync_event->info.fences[i].name);
 		break;
 	}
+#endif
 	default:
 		seq_printf(s, "sync: type: %d", sync_event->type);
 		break;
