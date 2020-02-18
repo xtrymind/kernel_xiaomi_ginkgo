@@ -385,7 +385,7 @@ static int dsi_panel_reset(struct dsi_panel *panel)
 	}
 
 #ifdef CONFIG_TOUCHSCREEN_XIAOMI_C3J
-	if (strstr(g_lcd_id, "huaxing") != NULL) {
+	if (unlikely(strstr(g_lcd_id, "huaxing") != NULL)) {
 		if (!IS_ERR_OR_NULL(lct_tp_reset_enable_cb_p)) {
 			lct_tp_reset_enable_cb_p(true);
 			usleep_range(5 * 1000, 5 * 1020);

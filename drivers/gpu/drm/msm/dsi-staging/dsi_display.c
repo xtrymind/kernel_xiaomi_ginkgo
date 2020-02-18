@@ -5058,7 +5058,7 @@ static ssize_t dsi_display_get_whitepoint(struct device *dev,
 	ctrl = &display->ctrl[display->cmd_master_idx];
 
 #ifdef CONFIG_TOUCHSCREEN_XIAOMI_C3J
-	if (strstr(g_lcd_id, "huaxing") != NULL) {
+	if (unlikely(strstr(g_lcd_id, "huaxing") != NULL)) {
 		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x60, buf, sizeof(buf));
 		rc = dsi_display_read_reg(ctrl, 0xf4, 0x00, buf, sizeof(buf));
 	} else {
@@ -5217,7 +5217,7 @@ int lct_tp_lockdown_info_callback(void)
 	}
 
 	ctrl = &display->ctrl[display->cmd_master_idx];
-	if (strstr(g_lcd_id, "huaxing") != NULL) {
+	if (unlikely(strstr(g_lcd_id, "huaxing") != NULL)) {
 		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x50, buf, sizeof(buf));
 		rc = dsi_display_read_reg(ctrl, 0xf4, 0x00, buf, sizeof(buf));
 	} else {
