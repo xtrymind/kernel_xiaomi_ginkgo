@@ -411,7 +411,7 @@ static int dsi_panel_reset(struct dsi_panel *panel)
 			gpio_set_value(r_config->reset_gpio,
 					r_config->sequence[i].level);
 
-			pr_err("[NVT-ts] lcd-reset_gpio = %d\n", r_config->sequence[i].level);
+			pr_debug("[NVT-ts] lcd-reset_gpio = %d\n", r_config->sequence[i].level);
 
 			if (r_config->sequence[i].sleep_ms)
 				usleep_range(r_config->sequence[i].sleep_ms * 1000,
@@ -423,7 +423,7 @@ static int dsi_panel_reset(struct dsi_panel *panel)
 		gpio_set_value(r_config->reset_gpio,
 			       r_config->sequence[i].level);
 
-		pr_err("[NVT-ts] lcd-reset_gpio = %d\n", r_config->sequence[i].level);
+		pr_debug("[NVT-ts] lcd-reset_gpio = %d\n", r_config->sequence[i].level);
 
 		if (r_config->sequence[i].sleep_ms)
 			usleep_range(r_config->sequence[i].sleep_ms * 1000,
