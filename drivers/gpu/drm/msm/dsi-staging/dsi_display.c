@@ -4872,7 +4872,6 @@ static ssize_t dsi_display_set_cabc(struct device *dev, struct device_attribute 
 		return rc;
 	}
 
-	pr_info("xinj:_###_%s,set_cabc_cmd: %d\n", __func__, param);
 	switch (param) {
 	case 0x1: //cabc on
 		dsi_panel_set_feature(display->panel, DSI_CMD_SET_CABC_ON);
@@ -4884,7 +4883,7 @@ static ssize_t dsi_display_set_cabc(struct device *dev, struct device_attribute 
 		pr_err("unknown cmds: %d\n", param);
 		break;
 	}
-	pr_info("xinj:_##### cabc over ###\n");
+
 	return len;
 }
 
@@ -4918,7 +4917,7 @@ static ssize_t dsi_display_set_cabc_movie(struct device *dev, struct device_attr
 		pr_err("unknown cmds: %d\n", param);
 		break;
 	}
-	pr_info("xinj:_##### cabc_movie over ###\n");
+
 	return len;
 }
 
@@ -4952,7 +4951,7 @@ static ssize_t dsi_display_set_cabc_still(struct device *dev, struct device_attr
 		pr_err("unknown cmds: %d\n", param);
 		break;
 	}
-	pr_info("xinj:_##### cabc_still over ###\n");
+
 	return len;
 }
 

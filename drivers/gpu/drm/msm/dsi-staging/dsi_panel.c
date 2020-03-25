@@ -3957,8 +3957,6 @@ int dsi_panel_set_feature(struct dsi_panel *panel, enum dsi_cmd_set_type type)
 		pr_err("Invalid params\n");
 		return -EINVAL;
 	}
-	pr_info("xinj:%s panel_initialized=%d type=%d\n", __func__,
-		panel->panel_initialized, type);
 	if (!panel->panel_initialized) {
 		pr_err("xinj: con't set cmds type=%d\n", type);
 		return -EINVAL;
