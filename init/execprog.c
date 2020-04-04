@@ -44,14 +44,18 @@ static struct file *file_open(const char *path, int flags, umode_t rights)
 {
 	struct file *filp;
 	mm_segment_t oldfs;
+	int err;
 
 	oldfs = get_fs();
 	set_fs(get_ds());
 	filp = filp_open(path, flags, rights);
 	set_fs(oldfs);
 
-	if (IS_ERR(filp))
+	if (IS_ERR(filp)) {
+		err = PTR_ERR(filp);
+		pr_err("filp failed with error=%d\n", err);
 		return NULL;
+	}
 
 	return filp;
 }
