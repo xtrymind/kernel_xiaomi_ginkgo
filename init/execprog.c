@@ -44,7 +44,6 @@ static struct file *file_open(const char *path, int flags, umode_t rights)
 {
 	struct file *filp;
 	mm_segment_t oldfs;
-	int err;
 
 	oldfs = get_fs();
 	set_fs(get_ds());
@@ -52,8 +51,7 @@ static struct file *file_open(const char *path, int flags, umode_t rights)
 	set_fs(oldfs);
 
 	if (IS_ERR(filp)) {
-		err = PTR_ERR(filp);
-		pr_err("filp failed with error=%d\n", err);
+		pr_err("%s: failed with error=%d\n", __func__, (int)PTR_ERR(filp));
 		return NULL;
 	}
 
