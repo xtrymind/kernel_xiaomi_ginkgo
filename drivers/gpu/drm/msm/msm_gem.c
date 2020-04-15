@@ -58,7 +58,7 @@ static bool use_pages(struct drm_gem_object *obj)
  * Let this be a cautionary tail of abstraction gone wrong.
  */
 
-static void sync_for_device(struct msm_gem_object *msm_obj)
+static void __maybe_unused sync_for_device(struct msm_gem_object *msm_obj)
 {
 	struct device *dev = msm_obj->base.dev->dev;
 
@@ -152,7 +152,8 @@ static struct page **get_pages(struct drm_gem_object *obj)
 		 * so we don't get ourselves into trouble with a dirty cache
 		 */
 		if (msm_obj->flags & (MSM_BO_WC|MSM_BO_UNCACHED))
-			sync_for_device(msm_obj);
+			dma_sync_sg_for_device(dev->dev, msm_obj->sgt->sgl,
+				msm_obj->sgt->nents, DMA_BIDIRECTIONAL);
 	}
 
 	return msm_obj->pages;
